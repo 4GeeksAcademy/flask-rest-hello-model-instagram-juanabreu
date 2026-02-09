@@ -48,6 +48,9 @@ class User(db.Model):
 
 class Post(db.Model):
     id:Mapped[int]=mapped_column(primary_key=True)
+
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    
     user: Mapped[User]= relationship(back_populates="post")
 
     media: Mapped[list["Media"]] = relationship(back_populates="post_media")
